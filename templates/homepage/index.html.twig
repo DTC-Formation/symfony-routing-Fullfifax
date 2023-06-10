@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% set age = 20 %}
+
+{% block body %}
+    <h2>Page de contact</h2>
+    <form action="">
+        <input type="text" name="nombre-a" />
+        <input type="text" name="signe" />
+        <input type="text" name="nombre-b" />
+        <input type="submit" />
+    </form>
+    {{ total }}
+{% endblock %}
