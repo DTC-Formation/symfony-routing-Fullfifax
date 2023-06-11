@@ -17,11 +17,9 @@ class HomepageController extends AbstractController
         $nombreB = $request->get(key: 'nombre-b');
         $signe = $request->get(key: 'signe');
 
-        if(is_numeric($nombreA) && is_numeric($nombreB)) {
-            $total = eval("return $nombreA $signe $nombreB;");
-        } else {
-            $total = "Impossible de faire le calcul";
-        }
+        $total = (is_numeric($nombreA) && is_numeric($nombreB)) 
+            ? eval("return $nombreA $signe $nombreB;") 
+            : "Impossible de faire le calcul";
         
         return $this->render('homepage/index.html.twig', [
             'total' => $total,
