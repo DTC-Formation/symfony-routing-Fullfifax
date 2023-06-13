@@ -18,9 +18,14 @@ class ResultController extends AbstractController
         $signe = $request->get(key: 'signe');
         $operateurs = ['+', '-', '*', '/'];
 
-        $total = (is_numeric($nombreA) && is_numeric($nombreB) && in_array($signe, $operateurs))
-            ? (($total = eval("return $nombreA $signe $nombreB;")))
+        $total = is_numeric($nombreA) && is_numeric($nombreB) && in_array($signe, $operateurs)
+            ? ($signe === '+' ? $nombreA + $nombreB
+                : ($signe === '-' ? $nombreA - $nombreB
+                    : ($signe === '*' ? $nombreA * $nombreB
+                        : ($signe === '/' && $nombreB != 0 ? $nombreA / $nombreB
+                            : "Impossible de faire le calcul"))))
             : "Impossible de faire le calcul";
+
 
         return $this->render('result/index.html.twig', [
             'total' => $total,
